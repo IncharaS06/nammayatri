@@ -13,6 +13,23 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
 </head>
 <body>
+    <!-- App Bar -->
+    <div class="app-bar">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <img src="https://pplx-res.cloudinary.com/image/upload/v1742062912/user_uploads/yCDBIaXXiIdDkFc/NM-logo.jpg" alt="Namma Yatri Logo" class="logo">
+    </div>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <a href="user_profile.html"><i class="fas fa-user"></i> Profile</a>
+        <a href="user_settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="#"><i class="fas fa-share-alt"></i> Share and Refer</a>
+        <a href="help_and_support.html"><i class="fas fa-question-circle"></i> Help and Support</a>
+        <a href="#"><i class="fas fa-history"></i> Booked Rides</a>
+    </div>
+
     <div class="container">
         <h1>Book Your Auto</h1>
 
@@ -28,7 +45,7 @@
                 <input type="text" id="dropoff" name="dropoff" placeholder="Enter drop-off location">
             </div>
             <button onclick="searchRoutes()">Search Routes</button>
-            <div id="map">
+             <div id="map">
                  <!-- Map will be loaded here using JavaScript -->
             </div>
         </section>
