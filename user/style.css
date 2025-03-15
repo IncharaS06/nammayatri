@@ -1,0 +1,44 @@
+body {
+    background-color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.logo {
+    margin-top: 30px;
+}
+.image-section {
+    margin-top: 20px;
+    text-align: center;
+}
+.image-section img {
+    display: block;
+    margin: 0 auto;
+    max-width: 80%;
+    height: auto;
+}
+.buttons {
+    margin-top: 30px;
+}
+button {
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+}
+.yellow-button {
+    background-color: #F8B400;
+}
+.green-button {
+    background-color: #008C45;
+}
+.black-button {
+    background-color: #000000;
+}
+button:hover {
+    opacity: 0.9;
+}
