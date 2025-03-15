@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Settings</title>
+    <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="driver_settings.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Driver Settings</h1>
+
+        <section class="setting-section">
+            <h2>Language</h2>
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="kn">Kannada</option>
+                <option value="hi">Hindi</option>
+                <!-- Add more languages as needed -->
+            </select>
+        </section>
+
+        <section class="setting-section">
+            <h2>Theme</h2>
+            <button id="theme-toggle">Toggle Dark Mode</button>
+        </section>
+
+        <section class="setting-section">
+            <h2>Technical Features</h2>
+            <button onclick="reportIssue()">Report an Issue</button>
+            <button onclick="contactUs()">Contact Us</button>
+            <button onclick="rateUs()">Rate Us on Play Store</button>
+        </section>
+    </div>
+
+    <script src="driver_settings.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Dashboard</title>
+    <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
+    <link rel="stylesheet" href="style.css"> <!-- For basic styling -->
+    <link rel="stylesheet" href="driver_dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--For Mobile Responsive-->
+</head>
+<body>
+    <!-- App Bar -->
+    <div class="app-bar">
+        <div class="menu-icon" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <img src="https://pplx-res.cloudinary.com/image/upload/v1742062912/user_uploads/yCDBIaXXiIdDkFc/NM-logo.jpg" alt="Namma Yatri Logo" class="logo">
+    </div>
+
+    <!-- Side Menu -->
+    <div id="sideMenu" class="side-menu">
+        <a href="#"><i class="fas fa-user"></i> Profile</a>
+        <a href="driver_settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="#"><i class="fas fa-history"></i> Completed Rides</a>
+        <a href="#"><i class="fas fa-share-alt"></i> Share and Refer</a>
+        <a href="#"><i class="fas fa-question-circle"></i> Help and Support</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>Welcome, Driver!</h1>
+        <section class="dashboard-stats">
+            <h2>Your Statistics</h2>
+            <div class="stat-grid"> <!-- Use a grid container -->
+                <div class="stat-card">
+                    <h3>Total Rides</h3>
+                    <p>125</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Today's Rides</h3>
+                    <p>12</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Earnings</h3>
+                    <p>₹ 4,500</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Marquee Message -->
+    <div class="marquee-container">
+        <marquee class="bottom-message">
+            Namma Yatri is a Direct-to-Driver app. There is no commission or middle-men. What you pay goes 100% to the Driver and their family!
+        </marquee>
+    </div>
+
+    <script src="driver_dashboard.js"></script>
+</body>
+</html>

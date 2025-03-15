@@ -1,0 +1,117 @@
+/* App Bar */
+.app-bar {
+    background-color: #fff; /* White theme */
+    color: #333; /* Dark text for contrast */
+    padding: 8px; /* Reduced padding for smaller height */
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 40px; /* Setting the height */
+}
+
+.menu-icon {
+    font-size: 20px; /* Reduced the size of icon too */
+    cursor: pointer;
+    margin-right: 20px;
+    color: #008C45; /* Green menu icon */
+}
+
+.logo {
+    width: 80px; /* Adjust the width to "crop" whitespace */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the logo fits within the specified width */
+}
+
+/* Side Menu */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Hidden by default */
+    width: 250px;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding-top: 60px;
+    transition: left 0.3s ease;
+    z-index: 99;
+    overflow-y: auto;
+}
+
+.side-menu a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+}
+
+.side-menu a:hover {
+    background-color: #ddd;
+}
+
+.side-menu a i {
+    margin-right: 8px;
+}
+
+.side-menu.open {
+    left: 0;
+}
+
+/* Content */
+.content {
+    margin-top: 40px; /* Height of the app bar */
+    padding: 20px;
+}
+
+h1 {
+    color: #008C45;
+    text-align: center;
+}
+
+.dashboard-stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.stat-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+}
+
+/* Marquee Message */
+.marquee-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    color: #008C45;
+    overflow: hidden;
+}
+
+.bottom-message {
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+    padding-left: 100%; /* Start offscreen */
+    display: inline-block;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
