@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namma Yatri - Book Your Ride</title>
+    <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Maps API Key -->
+    <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Your Auto</h1>
+
+        <!-- Location Search -->
+        <section id="location-search">
+            <h2>Where to?</h2>
+            <div class="search-group">
+                <label for="pickup">Pick-up Location:</label>
+                <input type="text" id="pickup" name="pickup" placeholder="Enter pick-up location">
+            </div>
+            <div class="search-group">
+                <label for="dropoff">Drop-off Location:</label>
+                <input type="text" id="dropoff" name="dropoff" placeholder="Enter drop-off location">
+            </div>
+            <button onclick="searchRoutes()">Search Routes</button>
+            <div id="map">
+                 <!-- Map will be loaded here using JavaScript -->
+            </div>
+        </section>
+
+        <!-- Emergency Ride Booking -->
+        <section id="emergency-ride">
+            <h2>Emergency Ride</h2>
+            <p>Upload a geo-tagged image for verification:</p>
+            <input type="file" id="geotag-image" name="geotag-image" accept="image/*">
+            <button onclick="requestEmergencyRide()">Request Emergency Ride</button>
+        </section>
+
+        <!-- Pre-booking -->
+        <section id="pre-booking">
+            <h2>Pre-book Your Ride</h2>
+            <label for="booking-date">Select Date:</label>
+            <input type="date" id="booking-date" name="booking-date">
+            <label for="booking-time">Select Time:</label>
+            <input type="time" id="booking-time" name="booking-time">
+            <button onclick="preBookRide()">Pre-book Ride (20% extra)</button>
+        </section>
+
+        <!-- Cancellation Policy -->
+        <section id="cancellation-policy">
+            <h2>Cancellation Policy</h2>
+            <ul>
+                <li>Cancellation before 24 hours: 75% refund</li>
+                <li>Cancellation before 12 hours: 50% refund</li>
+                <li>Cancellation before 6 hours: 25% refund</li>
+            </ul>
+        </section>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
