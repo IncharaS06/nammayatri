@@ -1,0 +1,38 @@
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.ride-list {
+    list-style: none;
+    padding: 0;
+}
+
+.ride-list li {
+    margin-bottom: 10px;
+}
+
+.ride-list li a {
+    display: block;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+}
+
+.ride-list li a:hover {
+    background-color: #eee;
+}

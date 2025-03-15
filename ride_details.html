@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ride Details</title>
+     <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="ride_details.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Ride Details</h1>
+        <div id="ride-details">
+            <!-- Ride details will be loaded here using JavaScript -->
+        </div>
+    </div>
+    <script>
+            // Function to extract the ride ID from the URL
+            function getRideIdFromUrl() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('rideId');
+            }
+
+            // Function to display ride details (replace with actual data)
+            function displayRideDetails(rideId) {
+                const rideDetailsDiv = document.getElementById('ride-details');
+                // Sample ride data (replace with actual data retrieval)
+                const rideData = {
+                    id: rideId,
+                    date: '2025-03-15',
+                    time: '10:30 AM',
+                    origin: 'Indira Nagar',
+                    destination: 'MG Road',
+                    fare: '₹150',
+                    paymentMethod: 'Cash',
+                    amountPaid: '₹150',
+                };
+
+                // Create HTML to display ride details
+                let rideDetailsHTML = `
+                    <h2>Ride ID: ${rideData.id}</h2>
+                    <p><strong>Date:</strong> ${rideData.date}</p>
+                    <p><strong>Time:</strong> ${rideData.time}</p>
+                    <p><strong>Origin:</strong> ${rideData.origin}</p>
+                    <p><strong>Destination:</strong> ${rideData.destination}</p>
+                    <p><strong>Fare:</strong> ${rideData.fare}</p>
+                    <h2>Settlement Info</h2>
+                    <p><strong>Payment Method:</strong> ${rideData.paymentMethod}</p>
+                    <p><strong>Amount Paid:</strong> ${rideData.amountPaid}</p>
+                `;
+
+                // Set the HTML content of the ride details div
+                rideDetailsDiv.innerHTML = rideDetailsHTML;
+            }
+
+            // Call the function to display ride details when the page loads
+            document.addEventListener('DOMContentLoaded', function() {
+                const rideId = getRideIdFromUrl();
+                if (rideId) {
+                    displayRideDetails(rideId);
+                } else {
+                    document.getElementById('ride-details').innerHTML = '<p>Ride ID not found.</p>';
+                }
+            });
+    </script>
+</body>
+</html>
