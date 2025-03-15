@@ -3,31 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namma Yatri Mobility</title>
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="styles.css">
+    <title>Namma Yatri</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico"> <!-- Replace with actual path -->
+    <!-- Style -->
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .logo {
+            margin-top: 30px;
+        }
+        .image-section {
+            margin-top: 20px;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+        .yellow-button {
+            background-color: #F8B400; /* Yellow from logo */
+        }
+        .green-button {
+            background-color: #008C45; /* Green from logo */
+        }
+        .black-button {
+            background-color: #000000; /* Black from logo */
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        Namma Yatri Mobility
-    </header>
-    <div class="container">
-        <div class="card">
-            <h2>Driver Interface</h2>
-            <p>Manage rides, earnings, and user interactions seamlessly.</p>
-            <button onclick="login('driver')">Login as Driver</button>
-        </div>
-        <div class="card">
-            <h2>Admin Interface</h2>
-            <p>Oversee operations, track rides, and handle complaints.</p>
-            <button onclick="login('admin')">Login as Admin</button>
-        </div>
-        <div class="card">
-            <h2>User Interface</h2>
-            <p>Book rides, track drivers, and make seamless payments.</p>
-            <button onclick="login('user')">Login as User</button>
-        </div>
+    <!-- Logo Section -->
+    <div class="logo">
+        <img src="https://pplx-res.cloudinary.com/image/upload/v1742056666/user_uploads/IqiVDJndBrZiqvR/NM-logo.jpg" alt="Namma Yatri Logo" width="200"> <!-- Replace with actual path -->
     </div>
-    <script src="script.js"></script>
+
+    <!-- Image Section -->
+    <div class="image-section">
+        <img src="https://github.com/nammayatri/nammayatri/blob/main/docs/images/drivers-with-vehicles.png?raw=true" alt="Drivers with Vehicles" width="80%"> <!-- Replace with actual path -->
+    </div>
+
+    <!-- Buttons Section -->
+    <div class="buttons">
+        <button class="yellow-button" onclick="location.href='/book-ride'">Book a Ride</button>
+        <button class="green-button" onclick="location.href='/driver-login'">Driver Login</button>
+        <button class="black-button" onclick="location.href='/contact-us'">Contact Us</button>
+    </div>
 </body>
 </html>
