@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Route Insights</title>
+    <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="route_insights.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Share Route Insights</h1>
+
+        <section class="input-section">
+            <h2>Share Your Insights</h2>
+            <form id="insights-form">
+                 <label for="region">Region:</label>
+                <select id="region" name="region">
+                    <option value="koramangala">Koramangala</option>
+                    <option value="indiranagar">Indira Nagar</option>
+                    <option value="mgroad">MG Road</option>
+                    <!-- Add more regions as needed -->
+                </select>
+
+                <label for="language">Language:</label>
+                <select id="language" name="language">
+                    <option value="en">English</option>
+                    <option value="kn">Kannada</option>
+                    <option value="hi">Hindi</option>
+                    <!-- Add more languages as needed -->
+                </select>
+
+                <label for="audio">Audio Recording:</label>
+                <input type="file" id="audio" name="audio" accept="audio/*">
+
+                <label for="video">Video Recording:</label>
+                <input type="file" id="video" name="video" accept="video/*">
+
+                <label for="text">Text Description:</label>
+                <textarea id="text" name="text" rows="4" cols="50"></textarea>
+
+                <button type="submit">Submit Insight</button>
+            </form>
+        </section>
+
+        <section class="insights-section">
+            <h2>Shared Insights</h2>
+            <!-- Display a list of submitted insights here -->
+            <p>No insights shared yet.</p>
+        </section>
+    </div>
+    <script>
+        document.getElementById('insights-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting in the traditional way
+
+            // Get the form data
+            const region = document.getElementById('region').value;
+            const language = document.getElementById('language').value;
+            const audio = document.getElementById('audio').files[0];
+            const video = document.getElementById('video').files[0];
+            const text = document.getElementById('text').value;
+
+            // Log the data to the console (for demonstration purposes)
+            console.log('Region:', region);
+            console.log('Language:', language);
+            console.log('Audio:', audio);
+            console.log('Video:', video);
+            console.log('Text:', text);
+
+            // Handle form submission (e.g., send data to a server)
+            alert('Form submitted! Check the console for the data.');
+        });
+    </script>
+</body>
+</html>

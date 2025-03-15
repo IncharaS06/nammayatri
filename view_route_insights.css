@@ -1,0 +1,98 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Light gray background */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #008C45; /* Namma Yatri Green */
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Filter Section */
+.filter-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.filter-section label {
+    display: inline-block;
+    width: 120px;
+    text-align: right;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.filter-section select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+}
+
+/* Insights List */
+.insights-list {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+#insights-list {
+    list-style: none;
+    padding: 0;
+}
+
+#insights-list li {
+    margin-bottom: 5px;
+}
+
+#insights-list li a {
+    display: block;
+    padding: 8px 12px;
+    background-color: #f0f0f0;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.2s ease;
+}
+
+#insights-list li a:hover {
+    background-color: #008C45; /* Namma Yatri Green */
+    color: #fff;
+}
+
+/* Insight Details */
+.insight-details {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+#insight-details p {
+    line-height: 1.6;
+}

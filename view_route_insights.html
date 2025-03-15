@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Route Insights</title>
+    <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="view_route_insights.css">
+</head>
+<body>
+    <div class="container">
+        <h1>View Route Insights</h1>
+
+        <section class="filter-section">
+            <h2>Filter by Region</h2>
+            <label for="region-select">Region:</label>
+            <select id="region-select" name="region">
+                <option value="all">All Regions</option>
+                <option value="koramangala">Koramangala</option>
+                <option value="indiranagar">Indira Nagar</option>
+                <option value="mgroad">MG Road</option>
+                <!-- Add more regions as needed -->
+            </select>
+        </section>
+
+        <section class="insights-list">
+            <h2>Available Insights</h2>
+            <ul id="insights-list">
+                <li data-region="koramangala"><a href="#">Insight 1: Shortcut near Koramangala (Kannada)</a></li>
+                <li data-region="mgroad"><a href="#">Insight 2: Road closure on MG Road (English)</a></li>
+                <li data-region="indiranagar"><a href="#">Insight 3: Alternate route during peak hours in Indira Nagar (Hindi)</a></li>
+                <!-- Dynamically populate this list with JavaScript -->
+            </ul>
+        </section>
+
+        <section class="insight-details">
+            <h2>Insight Details</h2>
+            <div id="insight-details">
+                <p>Select an insight from the list to view details.</p>
+                <!-- Dynamically load insight details here -->
+            </div>
+        </section>
+    </div>
+    <script>
+            document.getElementById('region-select').addEventListener('change', function() {
+                const selectedRegion = this.value;
+                const insightsList = document.getElementById('insights-list');
+                const insights = insightsList.getElementsByTagName('li');
+
+                for (let i = 0; i < insights.length; i++) {
+                    const insight = insights[i];
+                    const insightRegion = insight.getAttribute('data-region');
+
+                    if (selectedRegion === 'all' || selectedRegion === insightRegion) {
+                        insight.style.display = 'block'; // Show the insight
+                    } else {
+                        insight.style.display = 'none'; // Hide the insight
+                    }
+                }
+            });
+    </script>
+</body>
+</html>
