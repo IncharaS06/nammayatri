@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="logo">
+        <img src="https://pplx-res.cloudinary.com/image/upload/v1742056666/user_uploads/IqiVDJndBrZiqvR/NM-logo.jpg" alt="Namma Yatri Logo" width="150">
+    </div>
+
+    <div class="container">
+        <!-- Signup Form -->
+        <div class="form-container signup-form">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="signupPhone">Phone Number:</label>
+                    <input type="tel" id="signupPhone" name="signupPhone" placeholder="Enter your phone number" required>
+                </div>
+                <button type="button" class="yellow-button" onclick="sendSignupOTP()">Send OTP</button>
+                <div class="input-group">
+                    <label for="signupOTP">OTP:</label>
+                    <input type="text" id="signupOTP" name="signupOTP" placeholder="Enter OTP" required>
+                </div>
+                <button type="button" class="green-button" onclick="verifySignupOTP()">Sign Up</button>
+                 <div class="separator">
+                    <span>OR</span>
+                </div>
+                <button type="button" class="google-btn black-button" onclick="googleSignUp()">
+                    <i class="fab fa-google"></i> Sign up with Google
+                </button>
+                <p>Already have an account? <a href="login.html">Login</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>
