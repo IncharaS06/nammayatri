@@ -1,0 +1,98 @@
+.container {
+    display: flex;
+    width: 80%;
+    max-width: 900px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-container {
+    width: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 500;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.separator span {
+    padding: 0 12px;
+    color: #888;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #ddd;
+}
+
+button {
+    padding: 14px 24px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    /* Ensure high contrast */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); /* Add a subtle text shadow */
+}
+
+.yellow-button {
+    background-color: #F8B400; /* Yellow from logo */
+    color: #333; /* Dark text for contrast */
+}
+
+.green-button {
+    background-color: #008C45; /* Green from logo */
+    color: #fff; /* White text for contrast */
+}
+
+.black-button {
+    background-color: #000000; /* Black from logo */
+    color: #fff; /* White text for contrast */
+}
+
+button:hover

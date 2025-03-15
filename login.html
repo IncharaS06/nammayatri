@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="logo">
+        <img src="https://pplx-res.cloudinary.com/image/upload/v1742056666/user_uploads/IqiVDJndBrZiqvR/NM-logo.jpg" alt="Namma Yatri Logo" width="150">
+    </div>
+
+    <div class="container">
+        <!-- Login Form -->
+        <div class="form-container login-form">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="loginPhone">Phone Number:</label>
+                    <input type="tel" id="loginPhone" name="loginPhone" placeholder="Enter your phone number" required>
+                </div>
+                <button type="button" class="yellow-button" onclick="sendLoginOTP()">Send OTP</button>
+                <div class="input-group">
+                    <label for="loginOTP">OTP:</label>
+                    <input type="text" id="loginOTP" name="loginOTP" placeholder="Enter OTP" required>
+                </div>
+                <button type="button" class="green-button" onclick="verifyLoginOTP()">Login</button>
+                <div class="separator">
+                    <span>OR</span>
+                </div>
+                <button type="button" class="google-btn black-button" onclick="googleSignIn()">
+                    <i class="fab fa-google"></i> Sign in with Google
+                </button>
+                <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>
