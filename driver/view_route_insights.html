@@ -7,6 +7,11 @@
     <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="/nammayatri/driver/view_route_insights.css">
+    
+    <!-- Add Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
 </head>
 <body>
     <div class="container">
@@ -20,45 +25,129 @@
                 <option value="koramangala">Koramangala</option>
                 <option value="indiranagar">Indira Nagar</option>
                 <option value="mgroad">MG Road</option>
-                <!-- Add more regions as needed -->
             </select>
         </section>
 
         <section class="insights-list">
             <h2>Available Insights</h2>
             <ul id="insights-list">
-                <li data-region="koramangala"><a href="#">Insight 1: Shortcut near Koramangala (Kannada)</a></li>
-                <li data-region="mgroad"><a href="#">Insight 2: Road closure on MG Road (English)</a></li>
-                <li data-region="indiranagar"><a href="#">Insight 3: Alternate route during peak hours in Indira Nagar (Hindi)</a></li>
-                <!-- Dynamically populate this list with JavaScript -->
+                <div class="loading">Loading insights...</div>
             </ul>
         </section>
 
         <section class="insight-details">
             <h2>Insight Details</h2>
             <div id="insight-details">
-                <p>Select an insight from the list to view details.</p>
-                <!-- Dynamically load insight details here -->
+                <p class="placeholder">Select an insight from the list to view details.</p>
+                <div class="content" style="display: none;">
+                    <h3 id="detail-region"></h3>
+                    <p id="detail-language"></p>
+                    <div id="detail-media"></div>
+                    <p id="detail-text"></p>
+                    <p class="timestamp">Submitted on: <span id="detail-time"></span></p>
+                </div>
             </div>
         </section>
     </div>
+
     <script>
-            document.getElementById('region-select').addEventListener('change', function() {
-                const selectedRegion = this.value;
-                const insightsList = document.getElementById('insights-list');
-                const insights = insightsList.getElementsByTagName('li');
+        // Firebase Configuration (use your actual config)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrI2UiORuWaRRj-YrvXoamAjEVcm5ZHXE",
+            authDomain: "nammayatri-inya.firebaseapp.com",
+            projectId: "nammayatri-inya",
+            storageBucket: "nammayatri-inya.firebasestorage.app",
+            messagingSenderId: "827244536000",
+            appId: "1:827244536000:web:a357c9116be5e174674d25",
+            measurementId: "G-2JT1L6L828"
+        };
 
-                for (let i = 0; i < insights.length; i++) {
-                    const insight = insights[i];
-                    const insightRegion = insight.getAttribute('data-region');
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const storage = firebase.storage();
 
-                    if (selectedRegion === 'all' || selectedRegion === insightRegion) {
-                        insight.style.display = 'block'; // Show the insight
-                    } else {
-                        insight.style.display = 'none'; // Hide the insight
+        // Fetch and display insights
+        function fetchInsights() {
+            const insightsList = document.getElementById('insights-list');
+            
+            db.collection("insights").orderBy("timestamp", "desc")
+                .onSnapshot((querySnapshot) => {
+                    insightsList.innerHTML = '';
+                    querySnapshot.forEach((doc) => {
+                        const data = doc.data();
+                        const li = document.createElement('li');
+                        li.className = 'insight-item';
+                        li.dataset.region = data.region;
+                        li.dataset.language = data.language;
+                        li.dataset.audio = data.audioURL;
+                        li.dataset.video = data.videoURL;
+                        li.dataset.text = data.text;
+                        li.dataset.timestamp = data.timestamp?.toDate().toLocaleString();
+
+                        li.innerHTML = `
+                            <a href="#" class="insight-link">
+                                ${data.region} - ${data.language} - ${data.text.substring(0, 30)}...
+                            </a>
+                        `;
+                        
+                        li.addEventListener('click', () => showInsightDetails(data));
+                        insightsList.appendChild(li);
+                    });
+                    
+                    if(querySnapshot.empty) {
+                        insightsList.innerHTML = '<p>No insights available</p>';
                     }
-                }
+                });
+        }
+
+        // Show insight details
+        function showInsightDetails(data) {
+            const detailsContent = document.querySelector('#insight-details .content');
+            const placeholder = document.querySelector('#insight-details .placeholder');
+            
+            placeholder.style.display = 'none';
+            detailsContent.style.display = 'block';
+
+            document.getElementById('detail-region').textContent = data.region;
+            document.getElementById('detail-language').textContent = `Language: ${data.language}`;
+            document.getElementById('detail-text').textContent = data.text;
+            document.getElementById('detail-time').textContent = 
+                data.timestamp?.toDate().toLocaleString() || 'Unknown time';
+
+            const mediaContainer = document.getElementById('detail-media');
+            mediaContainer.innerHTML = '';
+
+            if(data.audioURL) {
+                const audio = document.createElement('audio');
+                audio.controls = true;
+                audio.src = data.audioURL;
+                mediaContainer.appendChild(audio);
+            }
+
+            if(data.videoURL) {
+                const video = document.createElement('video');
+                video.controls = true;
+                video.src = data.videoURL;
+                video.style.maxWidth = '100%';
+                mediaContainer.appendChild(video);
+            }
+        }
+
+        // Filter insights by region
+        document.getElementById('region-select').addEventListener('change', function() {
+            const selectedRegion = this.value;
+            const insights = document.querySelectorAll('.insight-item');
+
+            insights.forEach(insight => {
+                const matchesRegion = selectedRegion === 'all' || 
+                                    insight.dataset.region === selectedRegion;
+                insight.style.display = matchesRegion ? 'block' : 'none';
             });
+        });
+
+        // Initial fetch
+        fetchInsights();
     </script>
 </body>
 </html>

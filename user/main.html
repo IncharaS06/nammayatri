@@ -11,6 +11,44 @@
     <!-- Google Maps API Key -->
     <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <style>
+        .geotag-info {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+
+        /* Modified App Bar Styles */
+        .app-bar {
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 5px; /* Reduced padding */
+            display: flex;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            height: 30px; /* Reduced height */
+        }
+
+        .menu-icon {
+            font-size: 16px; /* Reduced font size */
+            cursor: pointer;
+            margin-right: 10px; /* Reduced margin */
+            color: #008C45;
+        }
+
+        .logo {
+            width: 60px; /* Reduced width */
+            height: auto;
+            object-fit: contain;
+        }
+    </style>
 </head>
 <body>
     <!-- App Bar -->
@@ -23,8 +61,8 @@
 
     <!-- Side Menu -->
     <div id="sideMenu" class="side-menu">
-        <a href="/nammayatri/user/user_profile.html"><i class="fas fa-user"></i> Profile</a>
-        <a href="/nammayatri/user/user_settings.html"><i class="fas fa-cog"></i> Settings</a>
+        <a href="/nammayatriuser/user_profile.html"><i class="fas fa-user"></i> Profile</a>
+        <a href="/nammayatriuser/user_settings.html"><i class="fas fa-cog"></i> Settings</a>
         <a href="#"><i class="fas fa-share-alt"></i> Share and Refer</a>
         <a href="help_and_support.html"><i class="fas fa-question-circle"></i> Help and Support</a>
         <a href="#"><i class="fas fa-history"></i> Booked Rides</a>
@@ -56,6 +94,7 @@
             <p>Upload a geo-tagged image for verification:</p>
             <input type="file" id="geotag-image" name="geotag-image" accept="image/*">
             <button onclick="requestEmergencyRide()">Request Emergency Ride</button>
+            <div id="geotag-info" class="geotag-info"></div>
         </section>
 
         <!-- Pre-booking -->

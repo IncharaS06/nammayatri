@@ -14,7 +14,8 @@ body {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-left: 250px; /* Shift content to the right to accommodate the side menu */
+    margin-left: 0; /* Shift content to the right to accommodate the side menu */
+    transition: margin-left 0.3s ease;
 }
 
 h1, h2 {
@@ -138,5 +139,9 @@ ul {
 }
 
 .side-menu.open {
-    left: 0;
+    left: 0; /* Show the menu */
+}
+
+.container.shift-right {
+    margin-left: 250px; /* Shift content to the right */
 }

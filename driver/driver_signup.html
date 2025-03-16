@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driver Sign Up</title>
     <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="/nammayatri/driver/driver_auth.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -20,13 +20,12 @@
             <h2>Driver Sign Up</h2>
             <form id="driverSignupForm">
                 <div class="input-group">
-                    <label for="driverSignupPhone">Phone Number:</label>
-                    <input type="tel" id="driverSignupPhone" name="driverSignupPhone" placeholder="Enter your phone number" required>
+                    <label for="driverSignupEmail">Email:</label>
+                    <input type="email" id="driverSignupEmail" name="driverSignupEmail" placeholder="Enter your email" required>
                 </div>
-                <button type="button" class="yellow-button" onclick="sendDriverSignupOTP()">Send OTP</button>
                 <div class="input-group">
-                    <label for="driverSignupOTP">OTP:</label>
-                    <input type="text" id="driverSignupOTP" name="driverSignupOTP" placeholder="Enter OTP" required>
+                    <label for="driverSignupPassword">Password:</label>
+                    <input type="password" id="driverSignupPassword" name="driverSignupPassword" placeholder="Enter your password" required>
                 </div>
                 <div class="input-group">
                     <label for="driverName">Full Name:</label>
@@ -44,17 +43,99 @@
                     <label for="driverExperience">Experience (Years):</label>
                     <input type="number" id="driverExperience" name="driverExperience" placeholder="Enter your experience in years" required>
                 </div>
-                <button type="button" class="green-button" onclick="verifyDriverSignupOTP()">Sign Up</button>
-                <div class="separator">
-                    <span>OR</span>
-                </div>
-                <button type="button" class="google-btn black-button" onclick="googleDriverSignUp()">
-                    <i class="fab fa-google"></i> Sign up with Google
-                </button>
+                <button type="button" class="green-button" onclick="driverSignup()">Sign Up</button>
                 <p>Already have an account? <a href="/nammayatri/driver/driver_login.html">Login</a></p>
             </form>
         </div>
     </div>
-    <script src="/nammayatri/driver/driver_auth.js"></script>
+
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
+        import {
+            getAuth,
+            createUserWithEmailAndPassword,
+        } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js";
+        import {
+            getFirestore,
+            doc,
+            setDoc
+        } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBrI2UiORuWaRRj-YrvXoamAjEVcm5ZHXE", // Use your actual API Key
+            authDomain: "nammayatri-inya.firebaseapp.com",
+            projectId: "nammayatri-inya",
+            storageBucket: "nammayatri-inya.firebasestorage.app",
+            messagingSenderId: "827244536000",
+            appId: "1:827244536000:web:a357c9116be5e174674d25",
+            measurementId: "G-2JT1L6L828"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Function to save driver data to Firestore
+        const saveDriverData = async (user, fullName, dlNumber, region, experience) => {
+            try {
+                await setDoc(doc(db, "drivers", user.uid), {
+                    email: user.email,
+                    fullName: fullName,
+                    dlNumber: dlNumber,
+                    region: region,
+                    experience: experience
+                });
+                console.log("Driver data saved successfully to Firestore.");
+                return true; // Indicate success
+            } catch (error) {
+                console.error("Error saving driver data to Firestore:", error);
+                alert("Error saving driver data: " + error.message);
+                return false; // Indicate failure
+            }
+        };
+
+        // Signup function
+        window.driverSignup = () => {
+            const email = document.getElementById('driverSignupEmail').value;
+            const password = document.getElementById('driverSignupPassword').value;
+            const fullName = document.getElementById('driverName').value;
+            const dlNumber = document.getElementById('driverDLNumber').value;
+            const region = document.getElementById('driverRegion').value;
+            const experience = document.getElementById('driverExperience').value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(async (userCredential) => { // Marked as async
+                    // Signed in
+                    const user = userCredential.user;
+                    console.log("Driver signup successful:", user);
+
+                    // Save additional driver data to Firestore
+                    const dataSaved = await saveDriverData(user, fullName, dlNumber, region, experience);
+
+                    if (dataSaved) {
+                        alert("Driver signup successful! Data saved.");
+                        window.location.href = '/nammayatri/driver/driver_login.html';
+                    } else {
+                        // If saving data failed, you might want to handle it here (e.g., sign out the user)
+                        console.warn("Signup incomplete due to data saving failure.");
+                         // Delete the user and display appropriate message.
+                        user.delete().then(() => {
+                        console.log("Deleted the driver successfully");
+                        }).catch((error) => {
+                        console.log("Encountered error while deleting user",error);
+                        });
+                    }
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Sign up error:", errorCode, errorMessage);
+                    alert("Sign up failed: " + errorMessage);
+                });
+        };
+    </script>
 </body>
 </html>

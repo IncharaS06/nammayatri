@@ -7,6 +7,11 @@
     <link rel="icon" href="https://github.com/nammayatri/nammayatri/raw/main/public/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="/nammayatri/driver/route_insights.css">
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js"></script>
 </head>
 <body>
     <div class="container">
@@ -50,7 +55,26 @@
             <p>No insights shared yet.</p>
         </section>
     </div>
+
     <script>
+        // Firebase configuration
+     const firebaseConfig = {
+  apiKey: "AIzaSyBrI2UiORuWaRRj-YrvXoamAjEVcm5ZHXE",
+  authDomain: "nammayatri-inya.firebaseapp.com",
+  projectId: "nammayatri-inya",
+  storageBucket: "nammayatri-inya.appspot.com", // Note the .appspot.com suffix
+  messagingSenderId: "827244536000",
+  appId: "1:827244536000:web:a357c9116be5e174674d25",
+  measurementId: "G-2JT1L6L828"
+};
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the database service
+        const db = firebase.firestore();
+        const storage = firebase.storage();
+
         document.getElementById('insights-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Prevent the form from submitting in the traditional way
 
@@ -61,16 +85,43 @@
             const video = document.getElementById('video').files[0];
             const text = document.getElementById('text').value;
 
-            // Log the data to the console (for demonstration purposes)
-            console.log('Region:', region);
-            console.log('Language:', language);
-            console.log('Audio:', audio);
-            console.log('Video:', video);
-            console.log('Text:', text);
+            // Upload files to Firebase Storage and get their URLs
+            Promise.all([
+                uploadFile(audio, 'audio'),
+                uploadFile(video, 'video')
+            ]).then(async (urls) => {
+                const audioURL = urls[0];
+                const videoURL = urls[1];
 
-            // Handle form submission (e.g., send data to a server)
-            alert('Form submitted! Check the console for the data.');
+                // Add data to Firestore
+                try {
+                    await db.collection("insights").add({
+                        region: region,
+                        language: language,
+                        audioURL: audioURL,
+                        videoURL: videoURL,
+                        text: text,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+
+                    alert('Insight submitted successfully!');
+                } catch (error) {
+                    console.error("Error adding document: ", error);
+                    alert('Failed to submit insight.');
+                }
+            });
         });
+
+        async function uploadFile(file, type) {
+            if (!file) {
+                return null;
+            }
+
+            const storageRef = firebase.storage().ref();
+            const fileRef = storageRef.child(`insights/${type}/${file.name}`);
+            await fileRef.put(file);
+            return await fileRef.getDownloadURL();
+        }
     </script>
 </body>
 </html>
