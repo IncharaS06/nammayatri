@@ -2,7 +2,6 @@
 
 **Team Name:** INYA-AI  
 **College:** Vidyavardhaka College of Engineering, Mysuru, Karnataka  
-**Track:** Track – 3  
 **Problem Statement:** Solving Peak-Hour Demand Imbalance and Reducing Ride Denials
 
 
