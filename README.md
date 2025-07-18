@@ -42,7 +42,8 @@ Unlike traditional platforms, we incentivize drivers with:
 
 ## 🏗️ System Architecture
 
-![System Architecture](https://raw.githubusercontent.com/yashwanths814/nammayatri/main/assets/Nammayatri.png)
+![System Architecture](https://raw.githubusercontent.com/yashwanths814/nammayatri/main/assets/Architechture Nammayatri
+.png)
 
 > Full flow: From user authentication and emergency booking to shortest-path driver selection, rewards scheduling, and data-driven optimization.
 
