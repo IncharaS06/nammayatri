@@ -57,6 +57,9 @@ Our system addresses these pain points by:
 - 🚦 Optimized shortest-path routing, even in traffic or emergencies  
 - 🔒 Emergency prioritization and secure, data-informed ride experiences  
 
+## 📄 License
+This project is licensed under the terms of the Apache License 2.0. See the [LICENSE](./LICENSE) file for details.
+
 
 ## 🔗 Live Preview
 
